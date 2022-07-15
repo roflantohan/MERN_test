@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import { useQuery } from "@apollo/client";
+import {GET_LOGS} from "./realm_apollo/queries"
+import TableLogs from './components/TableLogs';
+import Select from './components/Select';
+import MultipleSelect from './components/MultipleSelect';
+import { useState } from 'react';
 
-function App() {
+const App = () => {
+
+
+  const {loading, error, data} = useQuery(GET_LOGS);
+  
+  if (loading) return <p>Загрузка...</p>;
+
+  if (error) return <p>Ошибка: {error.message}</p>;
+  
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      <Select data={data.eulerlogs} field={"sourceId"}/>
+      <Select data={data.eulerlogs} field={"logName"}/>
+      <Select data={data.eulerlogs} field={"logSeverity"}/>
+        <Select data={data.eulerlogs} field={"sourceId"}/>
+        <button>Search</button>
+      </div>
+
+
+      <TableLogs data={data.eulerlogs}/>
+
+
+
     </div>
   );
 }

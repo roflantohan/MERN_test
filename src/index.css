@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.tableLogs {
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.tableLogs th,td  {
+  border: 1px solid black
+}
