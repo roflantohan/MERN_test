@@ -31,22 +31,15 @@ const TableLogs = ({data}) => {
         
     }
 
-    const arr = [];
-
-    
     const filterHandler = (field, value) => {
         const obj = filter
         obj[`${field}`] = value;
         setFilter(Object.assign({}, obj))
     }
 
-
     useEffect(() => {
-        
         formatTableData()
     }, [filter])
-    
-    
 
     return (
         <table className='tableLogs'>
